@@ -26,7 +26,7 @@ function App() {
         </p>
       </div>
       <p className="read-the-docs">
-        This is change title by Ajay.
+        This is change title by Ajitesh.
       </p>
     </>
   )
