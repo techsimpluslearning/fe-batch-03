@@ -2,7 +2,7 @@ const App = () =>{
 
   return(
     <div>
-      <p>Hii there i am divynshu</p>
+      <p>Hii there i am divyanshu</p>
     </div>
   )
 }
