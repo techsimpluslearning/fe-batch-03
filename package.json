@@ -11,9 +11,11 @@
   },
   "dependencies": {
     "bootstrap": "^5.3.3",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "reactstrap": "^9.2.3"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-strap": "^0.0.1",
+    "reactstrap": "^9.2.3",
+    "todo-app": "file:"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
