@@ -1,4 +1,5 @@
 import { LeftData } from "../constent";
+
 import "./LeftComonent.css"
 
 function LeftComponent() {
