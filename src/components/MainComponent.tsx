@@ -12,14 +12,14 @@ import './MainComponent.css'
     const [perPage, setPerPage] = useState(6);
     const [activePaginList, setActivePaginList] = useState<number[]>([]);
   
-    const totalTodos = todoList.length; // Use the existing todoList length
+    const totalTodos = todoList.length;
     const totalPages = Math.ceil(totalTodos / perPage);
 
       useEffect(() => {
     buildPagin(totalPages);
   }, [currentPage, totalPages]);
 
-  // Pagination Logic
+  
   const buildPagin = (totalPages: number) => {
     let pages = Array.from(Array(totalPages + 1).keys()).slice(1);
     let selectedPage = currentPage > 2 ? currentPage - 3 : 0;
@@ -27,7 +27,7 @@ import './MainComponent.css'
     setActivePaginList(activePages);
   };
 
-  // Get current page items
+  
   const startIndex = (currentPage - 1) * perPage;
   const currentTodos = todoList.slice(startIndex, startIndex + perPage);
 
