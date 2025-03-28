@@ -1,0 +1,19 @@
+.calendar_div{
+    display: flex;
+    flex-direction: row;
+
+}
+img{
+    width:40%; 
+    padding: 16px;
+    background-size: cover;
+}
+.calendar{
+    padding: 16px;
+    border-radius:20px;
+    background-size: cover;
+    overflow:scroll;
+}
+.react-datepicker__header{
+    background-color:bisque
+}
