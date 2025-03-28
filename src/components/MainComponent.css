@@ -1,0 +1,129 @@
+.outer-container {
+    border: 2px solid #2e2e2e;
+    padding: 20px;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #6e2c2c, #3e4c54, #1d3b4f); 
+    background-size: 300% 300%; 
+    
+  }
+  
+
+  
+  .main-container {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-height: 540px; 
+    background-color: rgba(32, 31, 31, 0.9);
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0px 3px 14px rgba(0, 0, 0, 0.6); 
+  }
+  
+  .card-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    width: 100%;
+    background: linear-gradient(to right, #4a403a, #1f7661);
+    color: #cccdc3; 
+    box-shadow: 4px 6px 10px rgba(0, 0, 0, 0.7); 
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    font-size: 1.5rem;
+    gap: 20px;
+  }
+  .form-select{
+    background: linear-gradient(to right, #5f534c, #1f7661);
+    color: #191f17;
+    
+  }
+  .card-box p{
+    color: #0b0c0afe;
+    font-weight: 700;
+    text-shadow: 1px 1px 1px rgba(85, 75, 75, 0.5);
+
+  }
+  .card-box:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.8);
+  }
+  
+  .chip-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-shadow: 3px 1px 2px rgba(0, 0, 0, 0.5);
+  }
+  
+  .chip-due-date,
+  .chip-priority {
+    font-size: 1.1rem;
+  }
+  
+  .actions-section {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .actions-section button {
+    padding: 10px 18px;
+    font-size: 1rem;
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .actions-section button:hover {
+    transform: translateY(-3px); 
+  }
+  
+  .btn-warning {
+    background-color: #c17a33; 
+    border: 1px solid #b96016;
+    color: #141813;
+  }
+  
+  .btn-warning:hover {
+    background-color: #a6520e; 
+  }
+  
+  .btn-danger {
+    background-color: #b82626; 
+    border: 1px solid #8b1a1a;
+    color: #1b2222;
+  }
+  
+  .btn-danger:hover {
+    background-color: #801010;
+  }
+  
+  .pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .pagination-btn {
+    padding: 10px 15px;
+    font-size: 14px;
+    background-color: #283e3f; 
+    border: 1px solid #1f2a2a;
+    border-radius: 5px;
+    color: #e7e7e7;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .pagination-btn:hover {
+    background-color: #1a565a; 
+    transform: translateY(-2px); 
+  }
+  
+  .pagination-btn.active {
+    background-color: #226644;
+    color: white;
+    border-color: #174c33;
+  }
+  
