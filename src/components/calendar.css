@@ -1,0 +1,20 @@
+.react-datepicker__month{
+    background-color: #a0a0a0;
+}
+.react-datepicker__month-container{
+    background-color: #a0a0a0;
+}
+.react-datepicker__header{
+    background-color: #ff6b00;
+}.react-datepicker__day react-datepicker__day--028 react-datepicker__day--selected react-datepicker__day--today{
+    background-color: #ff6b00;
+}.im{
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+    gap: 5px;
+    background:transparent;
+}
+img{
+    overflow: hidden;
+}
