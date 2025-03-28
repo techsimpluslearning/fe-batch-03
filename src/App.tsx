@@ -2,6 +2,8 @@ import "./App.css";
 import LeftComponent from "./components/LeftComponent";
 import MainComponent from "./components/MainComponent";
 import RightComponent from "./components/RightComponent";
+import "bootstrap-icons/font/bootstrap-icons.css";
+
 
 const App = () => {
   return (

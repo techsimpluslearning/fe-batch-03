@@ -1,9 +1,11 @@
+import TaskBox from "./TaskBox.tsx/TaskBox";
 
 
 function LeftComponent() {
   return (
     <div className="card-box">
-      Left Component
+      leftContainer
+      <TaskBox />
     </div>
   )
 }
