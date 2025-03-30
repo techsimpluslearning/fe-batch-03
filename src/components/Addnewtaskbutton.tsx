@@ -1,62 +1,114 @@
-// import { Button } from 'reactstrap'
-// import {Offcanvas} from 'reactstrap';
-// import {OffcanvasHeader} from 'reactstrap';
-// import { OffcanvasBody } from 'reactstrap';
-// const Addnewtaskbutton = () => {
-//   return (
-
-//     <div>
-//         <Offcanvas toggle={function noRefCheck() {}}>
-//         <OffcanvasHeader toggle={function noRefCheck() {}}>
-
-//         </OffcanvasHeader>
-//         <OffcanvasBody>
-//           <strong>This is the Offcanvas body.</strong>
-//         </OffcanvasBody>
-//       </Offcanvas>
-//       <Button  className="btnbackground" onClick={function noRefCheck() {}}>
-//         Add new task
-//       </Button>
-
-//     </div>
-//   );
-// };
-
-// export default Addnewtaskbutton;
-
 import { useState } from "react";
-import { Button, Placeholder } from "reactstrap";
+import { Button, Form } from "reactstrap";
 import { Offcanvas, OffcanvasHeader, OffcanvasBody } from "reactstrap";
 
-const Addnewtaskbutton = () => {
+const AddNewTaskButton = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    title: "",
+    priority: "medium",
+    description: "",
+  });
 
-  const onclicksidebar = () => {
+  const toggleSidebar = () => {
     setIsOpen(!isOpen);
+    if (!isOpen) {
+      // Reset form when opening
+      setFormData({ title: "", priority: "medium", description: "" });
+    }
+  };
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const task = {
+      ...formData,
+      createdAt: new Date().toISOString().split("T")[0],
+    };
+    console.log("Submitted Data:", task);
+
+    setIsOpen(false); // Close sidebar after submission
   };
 
   return (
-    <div>
-      <Offcanvas direction="end" isOpen={isOpen} toggle={onclicksidebar}>
-        <OffcanvasHeader toggle={onclicksidebar} className="offcanvasheader">
+    <div className="main-container"  >
+      <Offcanvas className="task" direction="end" isOpen={isOpen} toggle={toggleSidebar}>
+        <OffcanvasHeader toggle={toggleSidebar} className="offcanvasheader">
           Add New Task
         </OffcanvasHeader>
         <OffcanvasBody>
-          <input type="text" placeholder="Title" className="searchbar" />
-          <input type="text" placeholder="Description" className="searchbar" />
+          <Form onSubmit={handleSubmit}>
+            {/* Title Input */}
+            <div className="mb-3">
+              <label htmlFor="title" className="form-label fw-bold">
+                Title
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="title"
+                name="title"
+                value={formData.title}
+                onChange={handleChange}
+                placeholder="Title"
+                required
+              />
+            </div>
 
-          <Button className="btnbackground" onClick={onclicksidebar}>
-            Create new task
-          </Button>
+            {/* Priority Select */}
+            <div className="mb-3">
+              <label htmlFor="priority" className="form-label fw-bold">
+                Priority
+              </label>
+              <select
+                className="form-select"
+                id="priority"
+                name="priority"
+                value={formData.priority}
+                onChange={handleChange}
+              >
+                <option value="high">High Priority</option>
+                <option value="medium">Medium Priority</option>
+                <option value="low">Low Priority</option>
+              </select>
+            </div>
+
+            {/* Description Textarea */}
+            <div className="mb-3">
+              <label htmlFor="description" className="form-label fw-bold">
+                Description
+              </label>
+              <textarea
+                className="form-control"
+                id="description"
+                name="description"
+                rows={3}
+                value={formData.description}
+                onChange={handleChange}
+                placeholder="Description"
+                required
+              ></textarea>
+            </div>
+
+            {/* Submit Button */}
+            <Button className="btnbackground" type="submit">
+              Create new task
+            </Button>
+          </Form>
         </OffcanvasBody>
       </Offcanvas>
-      <div>
-        <Button className="btnbackground" onClick={onclicksidebar}>
-          Create new task
-        </Button>
-      </div>
+
+      <Button className="btnbackground" onClick={toggleSidebar}>
+        Create new task
+      </Button>
     </div>
   );
 };
 
-export default Addnewtaskbutton;
+export default AddNewTaskButton;

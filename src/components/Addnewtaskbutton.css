@@ -1,22 +1,81 @@
-.btnbackground{
-    padding: 5px;
-    margin: 15px;
-    background-color: black;
-    color: yellow;
-    border-radius: 10px;
-    box-shadow: 0px 0px 4px 4px;
-    height: 40px;
-    width: 130px; 
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5dc;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
+        url('https://www.transparenttextures.com/patterns/notebook.png');
+    background-size: cover;
+    font-family: 'Caveat', cursive;
+    color: #333;
+    padding: 20px;
+}
 
-  
+.task {
+    background: white;
+    border: 2px solid #333;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    padding: 20px; 
 }
-.searchbar{
-background-color:darkgrey ;
-padding: 5px;
-margin: 15px;
-    
-}
-.offcanvasheader{
-    background-color:coral
 
+
+.offcanvas-body {
+    background: white;
+    background-image: 
+        linear-gradient(to bottom, rgba(0, 0, 255, 0.2) 1px, transparent 1px);
+    background-size: 100% 32px;
+    border-left: 4px solid red; 
+    padding-left: 15px;
+    border-radius: 0 0 12px 12px;
 }
+
+
+.offcanvasheader {
+    background: #ffcc80;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    padding: 12px;
+    border-radius: 12px 12px 0 0;
+}
+
+
+.form-control, .form-select, textarea {
+    border: 2px solid #333;
+    background: rgba(255, 255, 255, 0.8);
+    font-family: 'Caveat', cursive;
+    font-size: 18px;
+}
+
+
+.btnbackground {
+    padding: 6px 14px;  
+    margin: 8px;
+    background: #ffeb3b;
+    color: #222;
+    font-family: 'Caveat', cursive;
+    font-size: 16px; 
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2), 
+                inset 0px 0px 5px rgba(255, 255, 255, 0.6);
+    width: 130px;  
+    height: 35px;  
+    cursor: pointer;
+    text-transform: uppercase;
+    transform: rotate(-1.5deg); 
+    transition: all 0.3s ease-in-out;
+}
+
+
+.btnbackground:hover {
+    background: #ffdb4d; 
+    color: #000; 
+    transform: rotate(0deg) scale(1.05);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3), 
+                inset 0px 0px 8px rgba(255, 255, 255, 0.9);
+} 
