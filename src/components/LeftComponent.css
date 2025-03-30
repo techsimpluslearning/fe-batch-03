@@ -1,0 +1,39 @@
+.todoContainer{
+    background-color: white;
+    padding: 16px;
+    margin-top: 8px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.11);
+    /* padding: 16px; */
+    border-radius: 8px;
+}
+
+.titleContainer{
+    display: flex;
+    gap: 12px;
+}
+
+.chip-text{
+    background-color: #FFCE00;
+    padding: 0 6px;
+    border-radius: 12px;
+    color: black;
+}
+
+.chip-text.High{
+    background-color: #e5bfc3;
+}
+.chip-text.Medium{
+    background-color: #c6c2ee;
+}
+.chip-text.Low{
+    background-color: #d7ffbe;
+}
+
+.edit-todo{
+    margin-right: 4px;
+}
+
