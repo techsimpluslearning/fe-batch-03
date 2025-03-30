@@ -1,29 +1,32 @@
+import "./App.css";
+import "./components/Addnewtaskbutton.css"
+import Addnewtaskbutton from "./components/Addnewtaskbutton";
+import LeftComponent from "./components/LeftComponent";
+import MainComponent from "./components/MainComponent";
+import RightComponent from "./components/RightComponent";
 
-import TopLeftCard from "./components/TopLeft"
-import TopRightCard from "./components/TopRight"
-import DisplayStatus from "./components/DisplayStatus"
-import "./App.css"
-const App = () =>{
-  return(
+const App = () => {
+  return (
     <div className="container">
+      <p className="mt-4 fs-1 fw-bold">Welcome to My ToDo App</p>
+    <div style={{display:"flex",justifyContent:"end"}}><Addnewtaskbutton/></div>
 
-          <p className="mt-4 fs-3"> Welcome to My ToDo Application</p>
-
-     <div className="row row-1">
-      <div className="col-6">
-         <TopLeftCard/> 
-      </div>
+      <div className="row row-1">
         <div className="col-6">
-        <TopRightCard/>
+          <LeftComponent />
         </div>
-     </div>
-     <div className="row row-2">
-      <div className="col-12">
-      <DisplayStatus/>
+        <div className="col-6">
+          <RightComponent />
+        </div>
       </div>
-     </div>
-    
+
+      <div className="row row-2">
+        <div className="col-12">
+          <MainComponent />
+        </div>
+      </div>
     </div>
-  )
-}
-export default App
+  );
+};
+
+export default App;
