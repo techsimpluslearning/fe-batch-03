@@ -8,7 +8,7 @@ const Calendar=()=>{
     
     const onChange = (date) => {
     const [start] = date;
-    setStartDate(start);
+    setStartDate(start); 
     console.log(start);
     
   };

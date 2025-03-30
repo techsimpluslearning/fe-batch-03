@@ -3,6 +3,7 @@
 }
 .react-datepicker__month-container{
     background-color: #a0a0a0;
+    min-height: 300px;
 }
 .react-datepicker__header{
     background-color: #ff6b00;
