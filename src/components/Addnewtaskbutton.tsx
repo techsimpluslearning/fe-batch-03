@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button, Form, Modal, ModalBody, ModalHeader } from "reactstrap";
+import "./Addnewtaskbutton.css"; 
 
 const AddNewTaskButton = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -7,13 +8,21 @@ const AddNewTaskButton = () => {
     title: "",
     priority: "medium",
     description: "",
+    dueDate: "",
+    status: "progress",
   });
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
     if (!isOpen) {
-      // Reset form when opening
-      setFormData({ title: "", priority: "medium", description: "" });
+      // Reset form when opening modal
+      setFormData({
+        title: "",
+        priority: "medium",
+        description: "",
+        dueDate: "",
+        status: "progress",
+      });
     }
   };
 
@@ -28,15 +37,16 @@ const AddNewTaskButton = () => {
     e.preventDefault();
     const task = {
       ...formData,
-      createdAt: new Date().toISOString().split("T")[0],
+      createdAt: new Date().toISOString().split("T")[0], // Date formatting
     };
-    console.log("Submitted Data:", task);
 
+    console.log("Submitted Data:", task);
     setIsOpen(false); // Close modal after submission
   };
 
   return (
-    <div  className="main-container">
+    <div className="main-container">
+      {/* Modal for Adding New Task */}
       <Modal isOpen={isOpen} toggle={toggleModal} centered>
         <ModalHeader toggle={toggleModal}>Add New Task</ModalHeader>
         <ModalBody>
@@ -53,9 +63,26 @@ const AddNewTaskButton = () => {
                 name="title"
                 value={formData.title}
                 onChange={handleChange}
-                placeholder="Title"
+                placeholder="Enter task title"
                 required
               />
+            </div>
+
+            {/* Description Textarea */}
+            <div className="mb-3">
+              <label htmlFor="description" className="form-label fw-bold">
+                Description
+              </label>
+              <textarea
+                className="form-control"
+                id="description"
+                name="description"
+                rows={3}
+                value={formData.description}
+                onChange={handleChange}
+                placeholder="Enter task description"
+                required
+              ></textarea>
             </div>
 
             {/* Priority Select */}
@@ -76,30 +103,53 @@ const AddNewTaskButton = () => {
               </select>
             </div>
 
-            {/* Description Textarea */}
+            {/* Status Select */}
             <div className="mb-3">
-              <label htmlFor="description" className="form-label fw-bold">
-                Description
+              <label htmlFor="status" className="form-label fw-bold">
+                Status
               </label>
-              <textarea
-                className="form-control"
-                id="description"
-                name="description"
-                rows={3}
-                value={formData.description}
+              <select
+                className="form-select"
+                id="status"
+                name="status"
+                value={formData.status}
                 onChange={handleChange}
-                placeholder="Description"
+              >
+                <option value="progress">In Progress</option>
+                <option value="success">Success</option>
+                <option value="complete">Complete</option>
+              </select>
+            </div>
+
+
+{/* Due Date */}
+            <div className="mb-3">
+              <label htmlFor="dueDate" className="form-label fw-bold">
+                Due Date
+              </label>
+              <input
+                type="date"
+                className="form-control"
+                id="dueDate"
+                name="dueDate"
+                value={formData.dueDate}
+                onChange={handleChange}
                 required
-              ></textarea>
+              />
             </div>
 
             {/* Submit Button */}
-            <Button className="btnbackground" type="submit">Create new task</Button>
+            <Button className="custom-btn" type="submit">
+              Create Task
+            </Button>
           </Form>
         </ModalBody>
       </Modal>
 
-      <Button className="btnbackground" onClick={toggleModal}>Create new task</Button>
+      {/* Open Modal Button */}
+      <Button className="custom-btn" onClick={toggleModal}>
+        Create New Task
+      </Button>
     </div>
   );
 };
