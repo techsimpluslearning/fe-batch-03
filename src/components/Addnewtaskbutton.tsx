@@ -1,79 +1,121 @@
-
 import { useState } from "react";
-import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
+import {
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  Input,
+  ModalFooter,
+} from "reactstrap";
+import Select from "react-select";
+import DatePicker from "react-datepicker";
+
+interface dropdownOptionTypes {
+  value: string;
+  label: string;
+}
+
+
+const statusOptions: dropdownOptionTypes[] = [
+  { value: "todo", label: "ToDo" },
+  { value: "inprogress", label: "In-Progress" },
+  { value: "completed", label: "Completed" },
+];
+
+const impOptions: dropdownOptionTypes[] = [
+  { value: "high", label: "High" },
+  { value: "medium", label: "Medium" },
+  { value: "low", label: "Low" },
+];
 
 const Addnewtaskbutton = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [todos, setTodos] = useState<any>([])
 
+  const [values, setValues] = useState<any>({
+    title: "",
+    description: "",
+    status: null,
+    dueDate: new Date(),
+    importance: null,
+  });
   const onclicksidebar = () => {
     setIsOpen(!isOpen);
   };
 
   const buttonText = "Add New Task";
 
+  const onValueChange = (field: string, value: any) => {
+    setValues({ ...values, [field]: value });
+  };
+
+  const onSubmit = () => {
+    setTodos(values)
+  };
+
   return (
     <div>
-      <Modal 
+      <Modal
         className="model"
-        isOpen={isOpen} 
-        toggle={onclicksidebar} 
+        isOpen={isOpen}
+        toggle={onclicksidebar}
         centered // This makes the modal open in the center
       >
         <ModalHeader toggle={onclicksidebar} className="modalheader">
           {buttonText}
         </ModalHeader>
         <ModalBody>
-          <input 
-            type="text" 
-            placeholder="Title" 
-            className="searchbar mb-2 p-2" 
+          <Input
+            onChange={(e) => onValueChange("title", e.target.value)}
+            value={values.title}
+            type="text"
+            placeholder="Title"
+            className="mb-2"
           />
-          <input 
-            type="text" 
-            placeholder="Description" 
-            className="searchbar mb-3 p-2" 
+          <Input
+            onChange={(e) => onValueChange("description", e.target.value)}
+            value={values.description}
+            type="textarea"
+            placeholder="Description"
+            className="mb-2"
           />
 
-
-
-           <select className="searchbar mb-3 p-2">
-            <option value="" disabled selected hidden>
-               Status
-            </option>
-            <option value="Progress"> Progress</option>
-            <option value="Pending">Pending</option>
-            <option value="Complete">Complete</option>
-          </select>
-            <input 
-            type="date" 
-            placeholder="Due Date" 
-            className="searchbar mb-3 p-2" 
+          <Select
+            onChange={(e) => onValueChange("status", e)}
+            options={statusOptions}
+            isClearable
+            value={values.status}
+            className="mb-2"
           />
-           
-          <select className="searchbar mb-3 p-2">
-            <option value="" disabled selected hidden>
-               Priority
-            </option>
-            <option value="High">High</option>
-            <option value="Medium">Medium</option>
-            <option value="Low">Low</option>
-          </select>
 
-          <Button
-            className="btnbackground" 
-            onClick={onclicksidebar}
-          >
-           {buttonText}
-          </Button>
+          <div className="w-100">
+            <DatePicker
+              onChange={(e) => {
+                onValueChange("dueDate", e);
+              }}
+              selected={values.dueDate}
+              className="form-control w-100"
+              dateFormat="dd-MMM-yyyy"
+            />
+          </div>
+
+          <Select
+            onChange={(e) => onValueChange("importance", e)}
+            options={impOptions}
+            isClearable
+            value={values.importance}
+            className="mb-2"
+          />
         </ModalBody>
+        <ModalFooter>
+          <Button className="mt-2" color="primary" onClick={onSubmit}>
+            {buttonText}
+          </Button>
+        </ModalFooter>
       </Modal>
 
       <div>
-        <Button 
-          color="" 
-          className="btnbackground" 
-          onClick={onclicksidebar}
-        >
+        <Button color="" className="btnbackground" onClick={onclicksidebar}>
           {buttonText}
         </Button>
       </div>
@@ -82,13 +124,3 @@ const Addnewtaskbutton = () => {
 };
 
 export default Addnewtaskbutton;
-
-
-
-
-
-
-
-
-
-

@@ -10,6 +10,15 @@
   
 }
 
+.w-100{
+  width: 100% !important;
+}
+
+.react-datepicker-wrapper{
+    display: flex !important;
+    margin-bottom: 8px;
+}
+
 
 .card-box{
   width: 100%;
