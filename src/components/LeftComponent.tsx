@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 function LeftComponent({ data }:any) {
   let Data = JSON.parse(localStorage.getItem("storedData") || '');
-  console.log(data);
+  // console.log(data);
 
   return (
     <div className="card-box">
