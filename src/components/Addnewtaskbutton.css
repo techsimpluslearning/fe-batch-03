@@ -1,22 +1,24 @@
-.btnbackground{
-    padding: 5px;
-    margin: 15px;
-    background-color: black;
-    color: yellow;
-    border-radius: 10px;
-    box-shadow: 0px 0px 4px 4px;
-    height: 40px;
-    width: 130px; 
+.btnbackground {
+    background-color: gray;
+    color: black;
+    margin: 5px;
+    border: none;
+}
 
+.btnbackground:hover{
+    background-color: chocolate;
+}
   
+.modalheader {
+    background-color:sandybrown;
+    color: black;
 }
-.searchbar{
-background-color:darkgrey ;
-padding: 5px;
-margin: 15px;
-    
+  
+.searchbar {
+    width: 100%;
+    margin-bottom: 8px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 14px;
 }
-.offcanvasheader{
-    background-color:coral
-
-}
+  

@@ -1,9 +1,9 @@
 import "./App.css";
 import "./components/Addnewtaskbutton.css"
-import Addnewtaskbutton from "./components/Addnewtaskbutton";
-import LeftComponent from "./components/LeftComponent";
-import MainComponent from "./components/MainComponent";
-import RightComponent from "./components/RightComponent";
+import Addnewtaskbutton from "./Components/Addnewtaskbutton";
+import LeftComponent from "./Components/LeftComponent";
+import RightComponent from "./Components/RightComponent";
+import MainComponent from "./Components/MainComponent";
 
 const App = () => {
   return (
