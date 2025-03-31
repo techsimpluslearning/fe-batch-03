@@ -48,7 +48,8 @@ const Addnewtaskbutton = ({setData,data}) => {
               <label htmlFor="Desc">Description : </label>
             <input className="form-control" type="text"  placeholder="Description" id="Desc" onChange={(e)=>onInputChange(e,"description")}/>
             </div>
-            <div >  
+            <div > 
+               
             <label htmlFor="prior">Priority : </label>
             <select className="form-control" name="priority" id="prior" onChange={(e)=>onInputChange(e,"priority")}>
 
