@@ -1,9 +1,10 @@
 import  { useState } from 'react';
+import DatePicker from 'react-datepicker';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input } from 'reactstrap';
 
 const Add_modal=()=>{
   const [modal, setModal] = useState(false);
-  
+  const [date,setdate]=useState(new Date())
 
   const toggle = () =>{
      setModal(!modal); }
@@ -24,7 +25,7 @@ const Add_modal=()=>{
              <option value="Medium">Medium</option>
              <option value="Low"> Low</option>
         </select> <p>Priority</p> </div>
-        <div className='field'> <input className="form-control" type='date' /> <p>Today's Date</p></div>
+        <div className='field'> < DatePicker selected={date} onChange={(date) => setdate(date)}/> <p>Today's Date</p></div>
         <div className='field'> <input className="calendar" type='date' /> <p>Due Date</p></div>
          </div>
         </ModalBody>
