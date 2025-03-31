@@ -15,6 +15,13 @@ interface dropdownOptionTypes {
   label: string;
 }
 
+interface data1 {
+  title: string;
+  description: string;
+  status:  null | {};
+  dueDate:string | {} ;
+  importance:  null | {};
+}
 
 const statusOptions: dropdownOptionTypes[] = [
   { value: "todo", label: "ToDo" },
@@ -28,11 +35,12 @@ const impOptions: dropdownOptionTypes[] = [
   { value: "low", label: "Low" },
 ];
 
+
 const Addnewtaskbutton = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [todos, setTodos] = useState<any>([])
+  const [todos, setTodos] = useState<data1[]>([])
 
-  const [values, setValues] = useState<any>({
+  const [values, setValues] = useState<data1>({
     title: "",
     description: "",
     status: null,
@@ -50,8 +58,10 @@ const Addnewtaskbutton = () => {
   };
 
   const onSubmit = () => {
-    setTodos(values)
+    setTodos([...todos,values])
+    setIsOpen(!isOpen);
   };
+console.log(todos);
 
   return (
     <div>
