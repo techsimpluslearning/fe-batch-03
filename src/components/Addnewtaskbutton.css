@@ -1,22 +1,5 @@
-.btnbackground{
-    padding: 5px;
-    margin: 15px;
-    background-color: black;
-    color: yellow;
-    border-radius: 10px;
-    box-shadow: 0px 0px 4px 4px;
-    height: 40px;
-    width: 130px; 
-
-  
-}
-.searchbar{
-background-color:darkgrey ;
-padding: 5px;
-margin: 15px;
-    
-}
-.offcanvasheader{
-    background-color:coral
-
+.mBody div{
+    margin-top: 5px;
+}.main{
+    font-weight: 400;
 }

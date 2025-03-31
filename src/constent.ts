@@ -43,7 +43,7 @@ let todoList = [
     { title: "Create a social media plan", description: "Schedule posts for the next month", dueDate: "2025-05-20", priority: "Medium", status: "In Progress" },
     { title: "Brainstorm new ideas", description: "Generate ideas for upcoming projects", dueDate: "2025-05-21", priority: "High", status: "In Progress" }
   ];
-  
+let data= JSON.parse(localStorage.getItem("storedData")) || [];
 
   const priorityColors = {
     High: "text-red-500",   
@@ -52,5 +52,5 @@ let todoList = [
   };
   
   
-  export {todoList,priorityColors}
+  export {todoList,priorityColors,data}
   

@@ -1,62 +1,93 @@
-// import { Button } from 'reactstrap'
-// import {Offcanvas} from 'reactstrap';
-// import {OffcanvasHeader} from 'reactstrap';
-// import { OffcanvasBody } from 'reactstrap';
-// const Addnewtaskbutton = () => {
-//   return (
-
-//     <div>
-//         <Offcanvas toggle={function noRefCheck() {}}>
-//         <OffcanvasHeader toggle={function noRefCheck() {}}>
-
-//         </OffcanvasHeader>
-//         <OffcanvasBody>
-//           <strong>This is the Offcanvas body.</strong>
-//         </OffcanvasBody>
-//       </Offcanvas>
-//       <Button  className="btnbackground" onClick={function noRefCheck() {}}>
-//         Add new task
-//       </Button>
-
-//     </div>
-//   );
-// };
-
-// export default Addnewtaskbutton;
+import "./Addnewtaskbutton.css";
 
 import { useState } from "react";
-import { Button, Placeholder } from "reactstrap";
-import { Offcanvas, OffcanvasHeader, OffcanvasBody } from "reactstrap";
+import { Modal, ModalBody, ModalFooter, ModalHeader, Placeholder } from "reactstrap";
+import Calendar from "./Calendar";
+import TaskCalendar from "./TaskCalender";
+// import { jsx } from "react/jsx-runtime";
 
-const Addnewtaskbutton = () => {
+const Addnewtaskbutton = ({setData,data}) => {
+  const date=new Date();
+  const [details,setDetails]=useState({title:"",description:"",priority:"",status:"",currDate:date.toDateString(),dueDate:""});
   const [isOpen, setIsOpen] = useState(false);
-
+  
   const onclicksidebar = () => {
     setIsOpen(!isOpen);
   };
 
-  return (
-    <div>
-      <Offcanvas direction="end" isOpen={isOpen} toggle={onclicksidebar}>
-        <OffcanvasHeader toggle={onclicksidebar} className="offcanvasheader">
-          Add New Task
-        </OffcanvasHeader>
-        <OffcanvasBody>
-          <input type="text" placeholder="Title" className="searchbar" />
-          <input type="text" placeholder="Description" className="searchbar" />
+  const onInputChange=(e,f)=>{
+      setDetails({...details,[f]:(e.target? e.target.value:e)});  
+  }
 
-          <Button className="btnbackground" onClick={onclicksidebar}>
-            Create new task
-          </Button>
-        </OffcanvasBody>
-      </Offcanvas>
-      <div>
-        <Button className="btnbackground" onClick={onclicksidebar}>
-          Create new task
-        </Button>
-      </div>
+  const onsubmit=()=>{
+    if (details.title && details.description && details.dueDate && details.priority) {
+      setData([...data,details]);
+      setIsOpen(!isOpen)
+    }else{
+      alert("fill all details");
+    }
+  }
+  console.log(data);
+  localStorage.setItem("storedData",JSON.stringify(data));
+
+
+  return (
+    <div className="main">
+      <button className="btn btn-dark mb-2" onClick={()=>setIsOpen(!isOpen)}>Add New Task</button>
+      <Modal isOpen={isOpen}>
+        <ModalHeader >
+          <p className=""> New Task Details </p>
+        </ModalHeader>
+        <ModalBody>
+          <div className="mBody ">
+            <div>
+              <label htmlFor="title">Title : </label>
+            <input className="form-control" type="text"  placeholder="Title" id="title" onChange={(e)=>onInputChange(e,"title")}/>
+            </div>
+            <div>
+              <label htmlFor="Desc">Description : </label>
+            <input className="form-control" type="text"  placeholder="Description" id="Desc" onChange={(e)=>onInputChange(e,"description")}/>
+            </div>
+            <div >  
+            <label htmlFor="prior">Priority : </label>
+            <select className="form-control" name="priority" id="prior" onChange={(e)=>onInputChange(e,"priority")}>
+
+              <option selected disabled value="">Select</option>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+            </select>
+            </div>
+            <div className="d-flex align-items-baseline gap-2">
+              <p>Status :</p>
+            
+              <input type="radio" name="status" id="completed" value="completed" onChange={(e)=>onInputChange(e,"status")}/>
+              <label htmlFor="completed">Completed</label>
+            &ensp;
+              <input type="radio" name="status" id="incompleted" value="incompleted" onChange={(e)=>onInputChange(e,"status")}/>
+              <label htmlFor="incompleted">Incompleted</label>
+
+            </div>
+            <div className="d-flex">
+              <p>Due Date :</p>
+            <div className="calendar  ">
+              <TaskCalendar onInputChange={onInputChange}/>
+              </div>
+            
+          </div>
+          </div>
+
+        </ModalBody>
+        <ModalFooter>
+          <div className="mFoot d-flex gap-2">
+                <button className="btn btn-dark" onClick={()=> onsubmit()}>Submit</button>
+                <button className="btn btn-secondary" onClick={()=>setIsOpen(!isOpen)}
+                >Cancel</button>
+
+          </div>
+        </ModalFooter>
+      </Modal>
     </div>
-  );
-};
+  )}
 
 export default Addnewtaskbutton;

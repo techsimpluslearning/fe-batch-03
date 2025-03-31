@@ -12,8 +12,14 @@ img{
     padding: 16px;
     border-radius:20px;
     background-size: cover;
-    overflow:scroll;
+    overflow: scroll;
 }
 .react-datepicker__header{
     background-color:bisque
+}.react-datepicker__day--selected{
+    border-radius: 50%;
+}@media  (width<992px){
+    img{
+        display:none;
+    }
 }
