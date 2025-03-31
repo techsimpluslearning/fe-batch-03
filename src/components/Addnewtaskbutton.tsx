@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { Button, Form } from "reactstrap";
-import { Offcanvas, OffcanvasHeader, OffcanvasBody } from "reactstrap";
+import { Button, Form, Modal, ModalBody, ModalHeader } from "reactstrap";
 
 const AddNewTaskButton = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,7 +9,7 @@ const AddNewTaskButton = () => {
     description: "",
   });
 
-  const toggleSidebar = () => {
+  const toggleModal = () => {
     setIsOpen(!isOpen);
     if (!isOpen) {
       // Reset form when opening
@@ -33,16 +32,14 @@ const AddNewTaskButton = () => {
     };
     console.log("Submitted Data:", task);
 
-    setIsOpen(false); // Close sidebar after submission
+    setIsOpen(false); // Close modal after submission
   };
 
   return (
-    <div className="main-container"  >
-      <Offcanvas className="task" direction="end" isOpen={isOpen} toggle={toggleSidebar}>
-        <OffcanvasHeader toggle={toggleSidebar} className="offcanvasheader">
-          Add New Task
-        </OffcanvasHeader>
-        <OffcanvasBody>
+    <div  className="main-container">
+      <Modal isOpen={isOpen} toggle={toggleModal} centered>
+        <ModalHeader toggle={toggleModal}>Add New Task</ModalHeader>
+        <ModalBody>
           <Form onSubmit={handleSubmit}>
             {/* Title Input */}
             <div className="mb-3">
@@ -97,16 +94,12 @@ const AddNewTaskButton = () => {
             </div>
 
             {/* Submit Button */}
-            <Button className="btnbackground" type="submit">
-              Create new task
-            </Button>
+            <Button className="btnbackground" type="submit">Create new task</Button>
           </Form>
-        </OffcanvasBody>
-      </Offcanvas>
+        </ModalBody>
+      </Modal>
 
-      <Button className="btnbackground" onClick={toggleSidebar}>
-        Create new task
-      </Button>
+      <Button className="btnbackground" onClick={toggleModal}>Create new task</Button>
     </div>
   );
 };
