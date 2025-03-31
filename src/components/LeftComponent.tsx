@@ -1,6 +1,6 @@
 import { FaEdit, FaTrash } from "react-icons/fa";
 import './LeftComponent.css'
-import { priorityColors, todoList } from "../constent";
+import {  todoList } from "../constent";
 
 function LeftComponent() {
 
@@ -25,12 +25,6 @@ function LeftComponent() {
         </div>
         })
       }
-
-
-
-
-
-
     </div>
   )
 }
