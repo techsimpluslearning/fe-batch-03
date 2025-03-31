@@ -6,11 +6,7 @@ function LeftComponent() {
 
   return (
     <div className="card-box">
-      
-
-
-
-      {
+      <h2 className="mb-4">latest Todo'</h2>{
         todoList.slice(0, 3).map((v)=>{
           return <div className={`todoContainer `} >
           <div className="titleContainer">

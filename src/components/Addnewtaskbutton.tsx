@@ -1,55 +1,106 @@
-// import { Button } from 'reactstrap'
-// import {Offcanvas} from 'reactstrap';
-// import {OffcanvasHeader} from 'reactstrap';
-// import { OffcanvasBody } from 'reactstrap';
-// const Addnewtaskbutton = () => {
-//   return (
-
-//     <div>
-//         <Offcanvas toggle={function noRefCheck() {}}>
-//         <OffcanvasHeader toggle={function noRefCheck() {}}>
-
-//         </OffcanvasHeader>
-//         <OffcanvasBody>
-//           <strong>This is the Offcanvas body.</strong>
-//         </OffcanvasBody>
-//       </Offcanvas>
-//       <Button  className="btnbackground" onClick={function noRefCheck() {}}>
-//         Add new task
-//       </Button>
-
-//     </div>
-//   );
-// };
-
-// export default Addnewtaskbutton;
-
 import { useState } from "react";
 import { Button, Placeholder } from "reactstrap";
-import { Offcanvas, OffcanvasHeader, OffcanvasBody } from "reactstrap";
+
+import { Modal, ModalHeader, ModalBody } from "reactstrap";
+
 
 const Addnewtaskbutton = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [task, setTask] = useState({
+    title: "",
+    description: "",
+    status: "",
+    dueDate: "",
+  });
 
   const onclicksidebar = () => {
     setIsOpen(!isOpen);
   };
 
-  return (
-    <div>
-      <Offcanvas direction="end" isOpen={isOpen} toggle={onclicksidebar}>
-        <OffcanvasHeader toggle={onclicksidebar} className="offcanvasheader">
-          Add New Task
-        </OffcanvasHeader>
-        <OffcanvasBody>
-          <input type="text" placeholder="Title" className="searchbar" />
-          <input type="text" placeholder="Description" className="searchbar" />
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { id, value } = e.target;
+    setTask((prevTask) => ({
+      ...prevTask,
+      [id]: value,
+    }));
+  };
 
-          <Button className="btnbackground" onClick={onclicksidebar}>
-            Create new task
+  const handleAddTask = () => {
+    console.log(task);
+    setIsOpen(false);
+    setTask({
+      title: "",
+      description: "",
+      status: "",
+      dueDate: "",
+    });
+  };
+
+  return (
+    <div className="model">
+      <Modal isOpen={isOpen} toggle={onclicksidebar}>
+        <ModalHeader toggle={onclicksidebar} className="offcanvasheader">
+          Add New Task
+        </ModalHeader>
+        <ModalBody>
+
+        <label htmlFor="title">Title</label>
+          <div>
+            
+            <input
+              id="title"
+              type="text"
+              placeholder="Title"
+              className="searchbar"
+              value={task.title}
+              onChange={handleInputChange}
+            />
+          </div>
+      
+            <div>
+            <label htmlFor="description">Description</label>
+            <input
+              id="description"
+              type="text"
+              placeholder="Description"
+              className="searchbar"
+              value={task.description}
+              onChange={handleInputChange}
+            />
+            </div>
+            
+            <label htmlFor="status">Priority</label>
+          <div>
+  <select
+    id="status"
+    className="searchbar"
+    value={task.status}
+    onChange={handleInputChange}
+  >
+    <option value="high">High</option>
+    <option value="medium">Medium</option>
+    <option value="low">Low</option>
+  </select>
+  </div>
+          <label htmlFor="dueDate">Due date</label>
+  
+          <div>
+            <input
+              id="dueDate"
+              type="date"
+              placeholder="Due date"
+              className="searchbar"
+              value={task.dueDate}
+              onChange={handleInputChange}
+            />
+          </div>
+          <Button className="btnbackground addtaskbtn" onClick={handleAddTask}>
+            Add new task
           </Button>
-        </OffcanvasBody>
-      </Offcanvas>
+        </ModalBody>
+      </Modal>
       <div>
         <Button className="btnbackground" onClick={onclicksidebar}>
           Create new task

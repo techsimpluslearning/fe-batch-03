@@ -40,8 +40,7 @@ import './MainComponent.css'
 
   return (
     <div className="card-box">
-      Main Component
-      hiiiiii
+      
       <h2 className="mb-4">To-Do List</h2>
 
       <div className="row">
