@@ -1,62 +1,62 @@
-// import { Button } from 'reactstrap'
-// import {Offcanvas} from 'reactstrap';
-// import {OffcanvasHeader} from 'reactstrap';
-// import { OffcanvasBody } from 'reactstrap';
-// const Addnewtaskbutton = () => {
-//   return (
+import React, { useState } from "react";
+import {
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Input,
+  Label,
+} from "reactstrap";
 
-//     <div>
-//         <Offcanvas toggle={function noRefCheck() {}}>
-//         <OffcanvasHeader toggle={function noRefCheck() {}}>
+function Example(args) {
+  const [modal, setModal] = useState(false);
 
-//         </OffcanvasHeader>
-//         <OffcanvasBody>
-//           <strong>This is the Offcanvas body.</strong>
-//         </OffcanvasBody>
-//       </Offcanvas>
-//       <Button  className="btnbackground" onClick={function noRefCheck() {}}>
-//         Add new task
-//       </Button>
-
-//     </div>
-//   );
-// };
-
-// export default Addnewtaskbutton;
-
-import { useState } from "react";
-import { Button, Placeholder } from "reactstrap";
-import { Offcanvas, OffcanvasHeader, OffcanvasBody } from "reactstrap";
-
-const Addnewtaskbutton = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const onclicksidebar = () => {
-    setIsOpen(!isOpen);
-  };
+  const toggle = () => setModal(!modal);
 
   return (
     <div>
-      <Offcanvas direction="end" isOpen={isOpen} toggle={onclicksidebar}>
-        <OffcanvasHeader toggle={onclicksidebar} className="offcanvasheader">
-          Add New Task
-        </OffcanvasHeader>
-        <OffcanvasBody>
-          <input type="text" placeholder="Title" className="searchbar" />
-          <input type="text" placeholder="Description" className="searchbar" />
-
-          <Button className="btnbackground" onClick={onclicksidebar}>
-            Create new task
+      <Button className="btn" color="primary" onClick={toggle}>
+        Create new task
+      </Button>
+      <Modal isOpen={modal} toggle={toggle} {...args}>
+        <ModalHeader toggle={toggle}>Add task</ModalHeader>
+        <ModalBody>
+          <div className="modalfield">
+         
+            <Label className="fw-bold">Title</Label>
+            <Input type="text" placeholder="Enter title"></Input>
+            <Label className="fw-bold">Description</Label>
+            <Input type="text" placeholder="Enter description"></Input>
+            <Label className="fw-bold">Priority:</Label>
+            <Input type="select">
+              <option value="">Select priority</option>
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </Input>
+            <Label className="fw-bold">Status:</Label>
+            <Input type="select">
+              <option value="">Select status</option>
+              <option value="pending">Pending</option>
+              <option value="in_progress">In Progress</option>
+              <option value="completed">Completed</option>
+            </Input>
+            <Label className="fw-bold">Select date</Label>
+            <Input type="date"></Input>
+          </div>
+        </ModalBody>
+        <ModalFooter>
+          <Button className="createtask" onClick={toggle}>
+            Add task
+          </Button>{" "}
+          <Button className="canceltask" onClick={toggle}>
+            Cancel
           </Button>
-        </OffcanvasBody>
-      </Offcanvas>
-      <div>
-        <Button className="btnbackground" onClick={onclicksidebar}>
-          Create new task
-        </Button>
-      </div>
+        </ModalFooter>
+      </Modal>
     </div>
   );
-};
+}
 
-export default Addnewtaskbutton;
+export default Example;
