@@ -1,0 +1,39 @@
+.header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+   
+    margin-bottom: 1%;
+    
+}
+.btn1{
+    margin: 10px;
+    border-radius:10px;
+    border-color: black;
+    border-width:1px;
+}
+h1{
+    margin: 16px;
+    margin-left: 5%;
+}
+.btn1:active{
+    transform:scale(0.7);
+    transition:0.4s;
+}
+.btn1:hover{
+    color: black;
+    background-color:white;
+}
+p{ 
+    margin-left:10px;
+    font-size: larger;
+    
+}
+.heading{
+    background-color: bisque;
+}
+
+.form-control{
+    margin-top: 10px;
+}
+
