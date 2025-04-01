@@ -15,6 +15,13 @@ interface dropdownOptionTypes {
   label: string;
 }
 
+export interface valuesType {
+  title: string;
+  description: string;
+  status: null | dropdownOptionTypes;
+  dueDate: Date;
+  importance: null | dropdownOptionTypes;
+}
 
 const statusOptions: dropdownOptionTypes[] = [
   { value: "todo", label: "ToDo" },
@@ -28,11 +35,16 @@ const impOptions: dropdownOptionTypes[] = [
   { value: "low", label: "Low" },
 ];
 
-const Addnewtaskbutton = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [todos, setTodos] = useState<any>([])
+interface addNewTaskButtonType  {
+  todos: valuesType[],
+  setTodos: any
+}
 
-  const [values, setValues] = useState<any>({
+const Addnewtaskbutton = (props: addNewTaskButtonType) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const { todos, setTodos } = props;
+
+  const [values, setValues] = useState<valuesType>({
     title: "",
     description: "",
     status: null,
@@ -50,12 +62,20 @@ const Addnewtaskbutton = () => {
   };
 
   const onSubmit = () => {
-    setTodos(values)
+    setTodos([values, ...todos]);
+    setValues({
+      title: "",
+      description: "",
+      status: null,
+      dueDate: new Date(),
+      importance: null,
+    });
+    setIsOpen(false);
   };
 
   return (
     <div>
-      <Modal
+      <Modal 
         className="model"
         isOpen={isOpen}
         toggle={onclicksidebar}
