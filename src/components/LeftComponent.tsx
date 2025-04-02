@@ -2,26 +2,30 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 import "./LeftComponent.css";
 import { priorityColors, todoList } from "../constent";
 import { valuesType } from "./Addnewtaskbutton";
+import { useContext } from "react";
+import { myContext } from "../Context";
 
-interface leftComponentType {
-  todos: valuesType[];
-  setTodos: any;
-  setIsOpen: any;
-  setValues: any;
-  theme?: "dark" | "light" | "default";
-}
 
-function LeftComponent(props: leftComponentType) {
-  const { todos, setIsOpen, setValues } = props;
+function LeftComponent() {
 
-  const onEditClick = (item: valuesType) => {
+  const {isOpen ,setIsOpen,todos,setTodos,values,setValues,btn,setBtn,setIndex}=useContext(myContext);
+
+  const onEditClick = (item: valuesType,i:number) => {
+    setIndex(i);
+    setBtn("Update Task");
     setIsOpen(true);
     setValues({ ...item });
-  };
-
+  }
+    const onDelete=(i:number)=>{
+      const prevTodos=JSON.parse(JSON.stringify(todos));
+    prevTodos.splice(i,1);
+    setTodos(prevTodos);
+    
+    
+  }
   return (
     <div className="card-box">
-      {todos.slice(0, 5).map((todo: valuesType) => {
+      {todos.slice(0, 5).map((todo: valuesType,i:number) => {
         return (
           <div className={`todoContainer `}>
             <div className="titleContainer">
@@ -39,8 +43,8 @@ function LeftComponent(props: leftComponentType) {
               </div>
             </div>
             <div className="">
-              <FaEdit onClick={() => onEditClick(todo)} className="edit-todo" />
-              <FaTrash className="delete-todo" />
+              <FaEdit onClick={() => onEditClick(todo,i)} className="edit-todo" />
+              <FaTrash className="delete-todo" onClick={()=>onDelete(i)} />
             </div>
           </div>
         );

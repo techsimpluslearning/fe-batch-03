@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { todoList } from "../constent";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import "./MainComponent.css";
+import { myContext } from "../Context";
 
 function MainComponent(props: any) {
+  const{todos}=useContext(myContext)
   const [currentPage, setCurrentPage] = useState(1);
   const [perPage, setPerPage] = useState(6);
   const [activePaginList, setActivePaginList] = useState<number[]>([]);

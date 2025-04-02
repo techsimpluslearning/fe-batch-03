@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   Button,
   Modal,
@@ -9,6 +9,7 @@ import {
 } from "reactstrap";
 import Select from "react-select";
 import DatePicker from "react-datepicker";
+import { myContext } from "../Context";
 
 interface dropdownOptionTypes {
   value: string;
@@ -35,30 +36,29 @@ const impOptions: dropdownOptionTypes[] = [
   { value: "low", label: "Low" },
 ];
 
-interface addNewTaskButtonType {
-  todos: valuesType[];
-  setTodos: any;
-  setIsOpen: any;
-  isOpen: boolean;
-  values: valuesType;
-  setValues: any;
-}
+const Addnewtaskbutton = () => {
 
-const Addnewtaskbutton = (props: addNewTaskButtonType) => {
-  const { todos, setTodos, isOpen, setIsOpen, values, setValues } = props;
-
+  const { todos, setTodos, isOpen, setIsOpen, values, setValues,btn,setBtn,index,setIndex } = useContext(myContext);
+ const buttonText = "Add New Task";
   const onclicksidebar = () => {
+    setBtn(buttonText);
     setIsOpen(!isOpen);
   };
 
-  const buttonText = "Add New Task";
+ 
 
   const onValueChange = (field: string, value: any) => {
     setValues({ ...values, [field]: value });
   };
 
-  const onSubmit = () => {
+  const onSubmit = (e:{}) => {
+    if(e.target.outerText==buttonText){
     setTodos([values, ...todos]);
+    }else{
+      const prevTodos=JSON.parse(JSON.stringify(todos));
+    prevTodos[index]=values;
+    setTodos([...prevTodos]);
+    }
     setValues({
       title: "",
       description: "",
@@ -66,8 +66,11 @@ const Addnewtaskbutton = (props: addNewTaskButtonType) => {
       dueDate: new Date(),
       importance: null,
     });
+    setIndex(-1);
     setIsOpen(false);
   };
+
+  localStorage.setItem("allTasks",JSON.stringify(todos));
 
   return (
     <div>
@@ -78,7 +81,7 @@ const Addnewtaskbutton = (props: addNewTaskButtonType) => {
         centered // This makes the modal open in the center
       >
         <ModalHeader toggle={onclicksidebar} className="modalheader">
-          {buttonText}
+          {btn}
         </ModalHeader>
         <ModalBody>
           <Input
@@ -125,7 +128,7 @@ const Addnewtaskbutton = (props: addNewTaskButtonType) => {
         </ModalBody>
         <ModalFooter>
           <Button className="mt-2" color="primary" onClick={onSubmit}>
-            {buttonText}
+            {btn}
           </Button>
         </ModalFooter>
       </Modal>
