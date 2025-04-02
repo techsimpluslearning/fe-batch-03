@@ -35,22 +35,18 @@ const impOptions: dropdownOptionTypes[] = [
   { value: "low", label: "Low" },
 ];
 
-interface addNewTaskButtonType  {
-  todos: valuesType[],
-  setTodos: any
+interface addNewTaskButtonType {
+  todos: valuesType[];
+  setTodos: any;
+  setIsOpen: any;
+  isOpen: boolean;
+  values: valuesType;
+  setValues: any;
 }
 
 const Addnewtaskbutton = (props: addNewTaskButtonType) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const { todos, setTodos } = props;
+  const { todos, setTodos, isOpen, setIsOpen, values, setValues } = props;
 
-  const [values, setValues] = useState<valuesType>({
-    title: "",
-    description: "",
-    status: null,
-    dueDate: new Date(),
-    importance: null,
-  });
   const onclicksidebar = () => {
     setIsOpen(!isOpen);
   };
@@ -75,7 +71,7 @@ const Addnewtaskbutton = (props: addNewTaskButtonType) => {
 
   return (
     <div>
-      <Modal 
+      <Modal
         className="model"
         isOpen={isOpen}
         toggle={onclicksidebar}

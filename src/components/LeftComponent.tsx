@@ -6,14 +6,22 @@ import { valuesType } from "./Addnewtaskbutton";
 interface leftComponentType {
   todos: valuesType[];
   setTodos: any;
+  setIsOpen: any;
+  setValues: any;
   theme?: "dark" | "light" | "default";
 }
 
 function LeftComponent(props: leftComponentType) {
-  const { todos } = props;
+  const { todos, setIsOpen, setValues } = props;
+
+  const onEditClick = (item: valuesType) => {
+    setIsOpen(true);
+    setValues({ ...item });
+  };
+
   return (
     <div className="card-box">
-      {todos.slice(0, 3).map((todo: valuesType) => {
+      {todos.slice(0, 5).map((todo: valuesType) => {
         return (
           <div className={`todoContainer `}>
             <div className="titleContainer">
@@ -31,7 +39,7 @@ function LeftComponent(props: leftComponentType) {
               </div>
             </div>
             <div className="">
-              <FaEdit className="edit-todo" />
+              <FaEdit onClick={() => onEditClick(todo)} className="edit-todo" />
               <FaTrash className="delete-todo" />
             </div>
           </div>
