@@ -1,4 +1,4 @@
-.searchbar, .priority-select, .btnbackground, .radio{
+/* .searchbar, .priority-select, .btnbackground, .radio{
     width: 100%;
     margin: 10px 0;
     padding: 10px;
@@ -11,11 +11,10 @@
 
 .gradient-header{
     background-color:coral
-}
+} */
   
 
-/* Container for the blurred background */
-.modal-overlay {
+/* .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -31,7 +30,44 @@
   .modal-overlay.show {
     display: block;
     opacity: 1;
-  }
+  } */
   
  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .btnbackground {
+    background-color: gray;
+    color: black;
+    margin: 5px;
+    border: none;
+}
+
+.btnbackground:hover{
+    background-color: chocolate;
+}
+  
+.modalheader {
+    background-color:sandybrown;
+    color: black;
+}
+  
+.searchbar {
+    width: 100%;
+    margin-bottom: 8px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 14px;
+}
   

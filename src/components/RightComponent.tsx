@@ -1,6 +1,7 @@
 import Calendar from "./Calendar";
 
-export default function RightComponent() {
+
+export default function RightComponent(props : any) {
   return (
    <div className="card-box">
         <div className="calendar_div">

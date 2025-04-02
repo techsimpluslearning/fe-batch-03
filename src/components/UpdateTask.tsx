@@ -9,6 +9,7 @@ import {
 } from "reactstrap";
 import Select from "react-select";
 import DatePicker from "react-datepicker";
+import { FaEdit } from "react-icons/fa";
 
 interface dropdownOptionTypes {
   value: string;
@@ -35,14 +36,13 @@ const impOptions: dropdownOptionTypes[] = [
   { value: "low", label: "Low" },
 ];
 
-interface addNewTaskButtonType  {
+interface updateButtonType  {
   todos: valuesType[],
-  setTodos: any
 }
 
-const Addnewtaskbutton = (props: addNewTaskButtonType) => {
+const UpdateTask = (props: any) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { todos, setTodos } = props;
+  const {todos} = props;
 
   const [values, setValues] = useState<valuesType>({
     title: "",
@@ -51,18 +51,20 @@ const Addnewtaskbutton = (props: addNewTaskButtonType) => {
     dueDate: new Date(),
     importance: null,
   });
+
+
   const onclicksidebar = () => {
+    setValues(todos);
     setIsOpen(!isOpen);
   };
 
-  const buttonText = "Add New Task";
+  const buttonText = "Update Task";
 
   const onValueChange = (field: string, value: any) => {
     setValues({ ...values, [field]: value });
   };
 
   const onSubmit = () => {
-    setTodos([values, ...todos]);
     setValues({
       title: "",
       description: "",
@@ -79,7 +81,7 @@ const Addnewtaskbutton = (props: addNewTaskButtonType) => {
         className="model"
         isOpen={isOpen}
         toggle={onclicksidebar}
-        centered // This makes the modal open in the center
+        centered 
       >
         <ModalHeader toggle={onclicksidebar} className="modalheader">
           {buttonText}
@@ -135,12 +137,15 @@ const Addnewtaskbutton = (props: addNewTaskButtonType) => {
       </Modal>
 
       <div>
-        <Button color="" className="btnbackground" onClick={onclicksidebar}>
-          {buttonText}
-        </Button>
+        <FaEdit className="edit-todo" onClick={onclicksidebar}/>
+
       </div>
     </div>
   );
 };
 
-export default Addnewtaskbutton;
+export default UpdateTask;
+
+function setTodos(arg0: any[]) {
+    throw new Error("Function not implemented.");
+}
