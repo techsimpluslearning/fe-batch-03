@@ -1,14 +1,15 @@
 import "./App.css";
 import "./components/Addnewtaskbutton.css";
+import { useContext, useState } from "react";
+import LeftComponent from "./components/LeftComponent";
 import Addnewtaskbutton, { valuesType } from "./Components/Addnewtaskbutton";
-import LeftComponent from "./Components/LeftComponent";
-import RightComponent from "./Components/RightComponent";
-import MainComponent from "./Components/MainComponent";
-import { useState } from "react";
+import MainComponent from "./components/MainComponent";
+import RightComponent from "./components/RightComponent";
+import { Input, FormGroup } from "reactstrap";
 
 const App = () => {
+
   const [isOpen, setIsOpen] = useState(false);
-  const [todos, setTodos] = useState<valuesType[]>([]);
   const [values, setValues] = useState<valuesType>({
     title: "",
     description: "",
@@ -18,12 +19,10 @@ const App = () => {
   });
 
   return (
-    <div className="container">
+    <div className="container" >
       <p className="mt-4 fs-1 fw-bold">Welcome to My ToDo App</p>
       <div style={{ display: "flex", justifyContent: "end" }}>
         <Addnewtaskbutton
-          todos={todos}
-          setTodos={setTodos}
           isOpen={isOpen}
           setIsOpen={setIsOpen}
           values={values}
@@ -32,22 +31,17 @@ const App = () => {
       </div>
 
       <div className="row row-1">
-        <div className="col-6">
-          <LeftComponent
-            todos={todos}
-            setTodos={setTodos}
-            setIsOpen={setIsOpen}
-            setValues ={setValues}
-          />
+        <div className="col-6" >
+          <LeftComponent setIsOpen={setIsOpen} setValues={setValues} />
         </div>
         <div className="col-6">
-          <RightComponent todos={todos} setTodos={setTodos} />
+          <RightComponent />
         </div>
       </div>
 
       <div className="row row-2">
         <div className="col-12">
-          <MainComponent todos={todos} setTodos={setTodos} />
+          <MainComponent />
         </div>
       </div>
     </div>

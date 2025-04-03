@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   Button,
   Modal,
@@ -9,6 +9,7 @@ import {
 } from "reactstrap";
 import Select from "react-select";
 import DatePicker from "react-datepicker";
+import { TaskContext } from "../TaskContext";
 
 interface dropdownOptionTypes {
   value: string;
@@ -36,8 +37,6 @@ const impOptions: dropdownOptionTypes[] = [
 ];
 
 interface addNewTaskButtonType {
-  todos: valuesType[];
-  setTodos: any;
   setIsOpen: any;
   isOpen: boolean;
   values: valuesType;
@@ -45,7 +44,8 @@ interface addNewTaskButtonType {
 }
 
 const Addnewtaskbutton = (props: addNewTaskButtonType) => {
-  const { todos, setTodos, isOpen, setIsOpen, values, setValues } = props;
+  const { isOpen, setIsOpen, values, setValues } = props;
+  const { todos, setTodos }: any = useContext(TaskContext);
 
   const onclicksidebar = () => {
     setIsOpen(!isOpen);
