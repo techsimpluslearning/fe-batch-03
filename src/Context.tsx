@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 import Addnewtaskbutton, { valuesType } from "./Components/Addnewtaskbutton";
 import App from "./App";
+
 interface  contextType{
   isOpen:boolean |null,
   setIsOpen:any,
@@ -29,7 +30,7 @@ interface  contextType{
  }
  );
 
-const Context=()=>{
+const Context=(props:any)=>{
   const allTasks=JSON.parse(localStorage.getItem("allTasks")) || []
   const [isOpen, setIsOpen] = useState(false);
   const [todos, setTodos] = useState<valuesType[]>(allTasks);
@@ -40,14 +41,14 @@ const Context=()=>{
     dueDate: new Date(),
     importance: null,
   });
+
   const [btn,setBtn]=useState("Add new Task");
   const [index,setIndex]=useState(-1);
-
+  const {children}=props
 
   return (
     <myContext.Provider value={ {isOpen ,setIsOpen,todos,setTodos,values,setValues,btn,setBtn,index,setIndex}} >
-<App/>
-
+      {children}
     </myContext.Provider>
   )
 }

@@ -12,6 +12,9 @@ createRoot(document.getElementById('root')!).render(
  
   
   <StrictMode>
-   <Context/>
+    <Context>
+      <App/>
+    </Context>
+  
   </StrictMode>,
 )
