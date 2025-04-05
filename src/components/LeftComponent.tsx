@@ -1,7 +1,8 @@
 import { FaEdit, FaTrash } from "react-icons/fa";
 import "./LeftComponent.css";
 import { priorityColors, todoList } from "../constent";
-import { valuesType } from "./Addnewtaskbutton";
+import Addnewtaskbutton, { valuesType } from "./Addnewtaskbutton";
+import { AiOutlineEdit } from "react-icons/ai";
 
 interface leftComponentType {
   todos: valuesType[];
@@ -11,6 +12,7 @@ interface leftComponentType {
 
 function LeftComponent(props: leftComponentType) {
   const { todos } = props;
+
   return (
     <div className="card-box">
       {todos.slice(0, 3).map((todo: valuesType) => {
@@ -31,7 +33,7 @@ function LeftComponent(props: leftComponentType) {
               </div>
             </div>
             <div className="">
-              <FaEdit className="edit-todo" />
+              <FaEdit className="edit-todo"/>
               <FaTrash className="delete-todo" />
             </div>
           </div>

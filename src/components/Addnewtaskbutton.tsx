@@ -129,7 +129,7 @@ const Addnewtaskbutton = (props: addNewTaskButtonType) => {
         </ModalBody>
         <ModalFooter>
           <Button className="mt-2" color="primary" onClick={onSubmit}>
-            {buttonText}
+            {buttonText} 
           </Button>
         </ModalFooter>
       </Modal>
