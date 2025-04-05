@@ -1,6 +1,12 @@
+import { useContext } from "react";
 import Calendar from "./Calendar";
+import { TaskContext } from "../TaskContext";
 
 export default function RightComponent(props: any) {
+  const data = useContext(TaskContext)
+  console.log(data);
+  
+
   return (
     <div className="card-box">
       <div className="calendar_div">

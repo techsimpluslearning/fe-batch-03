@@ -5,17 +5,17 @@ import Addnewtaskbutton, { valuesType } from "./Addnewtaskbutton";
 import { AiOutlineEdit } from "react-icons/ai";
 
 interface leftComponentType {
-  todos: valuesType[];
-  setTodos: any;
+  setIsOpen: any;
+  setValues: any;
   theme?: "dark" | "light" | "default";
 }
 
 function LeftComponent(props: leftComponentType) {
-  const { todos } = props;
+  const { todos} = props;
 
   return (
-    <div className="card-box">
-      {todos.slice(0, 3).map((todo: valuesType) => {
+    <div className="card-box" >
+      {todos.slice(0, 5).map((todo: valuesType, index:number) => {
         return (
           <div className={`todoContainer `}>
             <div className="titleContainer">
