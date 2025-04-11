@@ -1,33 +1,29 @@
 import { FaEdit, FaTrash } from "react-icons/fa";
 import "./LeftComponent.css";
 import { valuesType } from "./Addnewtaskbutton";
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { TaskContext } from "../TaskContext";
 import { ThemeContext } from "../ThemeContext";
 
 interface leftComponentType {
-  setIsOpen: any;
-  setValues: any;
   theme?: "dark" | "light" | "default";
 }
 
 function LeftComponent(props: leftComponentType) {
   const { bgColor }: any = useContext(ThemeContext);
-  const { setIsOpen, setValues } = props;
-  const { todos}: any = useContext(TaskContext);
 
-  const onEditClick = (item: valuesType) => {
-    setIsOpen(true);
-    setValues({ ...item });
-  };
+  const { todos, setIsOpen, onEditClick }: any = useContext(TaskContext);
+  console.log("Left Com.");
 
   return (
     <div className="card-box" style={{ backgroundColor: bgColor }}>
-      {todos.slice(0, 5).map((todo: valuesType, index:number) => {
+      {todos.slice(0, 5).map((todo: valuesType, index: number) => {
         return (
           <div className={`todoContainer `}>
             <div className="titleContainer">
-              <div className="title">{todo.title}</div>
+              <div className="title">
+                {todo.title} - {new Date(todo.dueDate).toDateString()}
+              </div>
               <div
                 className={`chip-text ${
                   todo.importance?.value === "high"
@@ -41,7 +37,10 @@ function LeftComponent(props: leftComponentType) {
               </div>
             </div>
             <div className="">
-              <FaEdit onClick={() => onEditClick(todo)} className="edit-todo" />
+              <FaEdit
+                onClick={() => onEditClick(index)}
+                className="edit-todo"
+              />
               <FaTrash className="delete-todo" />
             </div>
           </div>
@@ -51,4 +50,4 @@ function LeftComponent(props: leftComponentType) {
   );
 }
 
-export default LeftComponent;
+export default React.memo(LeftComponent);

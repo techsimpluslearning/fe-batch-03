@@ -8,31 +8,17 @@ import RightComponent from "./components/RightComponent";
 import { Input, FormGroup } from "reactstrap";
 
 const App = () => {
-
-  const [isOpen, setIsOpen] = useState(false);
-  const [values, setValues] = useState<valuesType>({
-    title: "",
-    description: "",
-    status: null,
-    dueDate: new Date(),
-    importance: null,
-  });
-
   return (
     <div className="container" >
       <p className="mt-4 fs-1 fw-bold">Welcome to My ToDo App</p>
       <div style={{ display: "flex", justifyContent: "end" }}>
         <Addnewtaskbutton
-          isOpen={isOpen}
-          setIsOpen={setIsOpen}
-          values={values}
-          setValues={setValues}
         />
       </div>
 
       <div className="row row-1">
         <div className="col-6" >
-          <LeftComponent setIsOpen={setIsOpen} setValues={setValues} />
+          <LeftComponent />
         </div>
         <div className="col-6">
           <RightComponent />

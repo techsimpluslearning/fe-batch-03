@@ -36,29 +36,42 @@ const impOptions: dropdownOptionTypes[] = [
   { value: "low", label: "Low" },
 ];
 
-interface addNewTaskButtonType {
-  setIsOpen: any;
-  isOpen: boolean;
-  values: valuesType;
-  setValues: any;
-}
+interface addNewTaskButtonType {}
 
 const Addnewtaskbutton = (props: addNewTaskButtonType) => {
-  const { isOpen, setIsOpen, values, setValues } = props;
-  const { todos, setTodos }: any = useContext(TaskContext);
+  const {
+    isOpen,
+    setIsOpen,
+    values,
+    setValues,
+    todos,
+    setTodos,
+    editTaskId,
+  }: any = useContext(TaskContext);
 
   const onclicksidebar = () => {
     setIsOpen(!isOpen);
   };
 
-  const buttonText = "Add New Task";
+  console.log("Hello", editTaskId);
+
+  const buttonText = editTaskId !== null ? "Update Task" : "Add New Task";
 
   const onValueChange = (field: string, value: any) => {
     setValues({ ...values, [field]: value });
   };
 
+
+
   const onSubmit = () => {
-    setTodos([values, ...todos]);
+    if (editTaskId !== null) {
+      let todosCopy = JSON.parse(JSON.stringify(todos));
+      todosCopy.splice(editTaskId, 1, values);
+      setTodos(todosCopy);
+    } else {
+      setTodos([values, ...todos]);
+    }
+
     setValues({
       title: "",
       description: "",

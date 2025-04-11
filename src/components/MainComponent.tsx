@@ -7,7 +7,6 @@ function MainComponent(props: any) {
   const [currentPage, setCurrentPage] = useState(1);
   const [perPage, setPerPage] = useState(6);
   const [activePaginList, setActivePaginList] = useState<number[]>([]);
-
   const totalTodos = todoList.length; // Use the existing todoList length
   const totalPages = Math.ceil(totalTodos / perPage);
 
