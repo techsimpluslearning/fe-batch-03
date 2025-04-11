@@ -5,17 +5,17 @@ import "./MainComponent.css";
 import { myContext } from "../Context";
 
 function MainComponent(props: any) {
-  const{todos}=useContext(myContext)
+  const{todos,setTodos,onDelete,onEditClick}=useContext(myContext);
   const [currentPage, setCurrentPage] = useState(1);
   const [perPage, setPerPage] = useState(6);
   const [activePaginList, setActivePaginList] = useState<number[]>([]);
 
-  const totalTodos = todoList.length; // Use the existing todoList length
+  const totalTodos = todos.length; // Use the existing todoList length
   const totalPages = Math.ceil(totalTodos / perPage);
 
   useEffect(() => {
-    buildPagin(totalPages);
-  }, [currentPage, totalPages]);
+    buildPagin(totalPages)
+  }, [currentPage, totalPages,setTodos]);
 
   // Pagination Logic
   const buildPagin = (totalPages: number) => {
@@ -27,41 +27,43 @@ function MainComponent(props: any) {
 
   // Get current page items
   const startIndex = (currentPage - 1) * perPage;
-  const currentTodos = todoList.slice(startIndex, startIndex + perPage);
+  const currentTodos = todos.slice(startIndex, startIndex + perPage);
+console.log(todos);
 
   return (
     <div className="card-box">
       Main Component hiiiiii
       <h2 className="mb-4">To-Do List</h2>
       <div className="row">
-        {currentTodos.map((v, i) => {
+        {todos?.map((v, i) => {
           return (
             <div className="col-4 mb-4">
-              <div className="card p-4 shadow">
+              <div className="task ReactNodecard p-4 shadow">
                 <h3>{v.title}</h3>
                 <p>{v.description}</p>
                 <span
                   className={` badge ${
-                    v.priority === "High"
+                    v.importance?.value === "high"
                       ? "bg-danger"
-                      : v.priority === "Medium"
+                      : v.importance?.value === "medium"
                       ? "bg-warning"
                       : "bg-success"
                   }`}
                 >
                   {" "}
-                  {v.priority}
+                  {v.importance?.label}
                 </span>
                 <div className="features-todo mt-3">
-                  <span>{v.dueDate}</span>
-                  <FaEdit className="edit-todo" />
-                  <FaTrash className="delete-todo" />
+                  <p> {JSON.stringify(v.dueDate)}</p>
+                  <FaEdit className="edit-todo" onClick={()=>onEditClick(v,i)} />
+                  <FaTrash className="delete-todo" onClick={()=>{onDelete(i)}} />
                 </div>
               </div>
             </div>
           );
         })}
       </div>
+
       <div className="row mt-4">
         <div className="d-flex gap-3 justify-content-center">
           {activePaginList.map((n) => {

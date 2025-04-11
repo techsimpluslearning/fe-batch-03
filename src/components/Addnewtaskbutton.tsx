@@ -20,7 +20,7 @@ export interface valuesType {
   title: string;
   description: string;
   status: null | dropdownOptionTypes;
-  dueDate: Date;
+  dueDate: String;
   importance: null | dropdownOptionTypes;
 }
 
@@ -49,6 +49,8 @@ const Addnewtaskbutton = () => {
  
 
   const onValueChange = (field: string, value: any) => {
+    console.log(value);
+    
     setValues({ ...values, [field]: value });
   };
 
@@ -64,7 +66,7 @@ const Addnewtaskbutton = () => {
       title: "",
       description: "",
       status: null,
-      dueDate: new Date(),
+      dueDate: new Date().toDateString(),
       importance: null,
     });
     setIndex(-1);
@@ -111,9 +113,9 @@ const Addnewtaskbutton = () => {
           <div className="w-100">
             <DatePicker
               onChange={(e) => {
-                onValueChange("dueDate", e);
+                onValueChange("dueDate", e?.toDateString());
               }}
-              selected={values.dueDate}
+              selected={values?.dueDate}
               className="form-control w-100"
               dateFormat="dd-MMM-yyyy"
             />

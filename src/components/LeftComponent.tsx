@@ -8,24 +8,15 @@ import { myContext } from "../Context";
 
 function LeftComponent() {
 
-  const {isOpen ,setIsOpen,todos,setTodos,values,setValues,btn,setBtn,setIndex}=useContext(myContext);
+  const {isOpen ,setIsOpen,todos,setTodos,values,setValues,btn,setBtn,setIndex,onDelete,onEditClick,filterTask}=useContext(myContext);
 
-  const onEditClick = (item: valuesType,i:number) => {
-    setIndex(i);
-    setBtn("Update Task");
-    setIsOpen(true);
-    setValues({ ...item });
-  }
-    const onDelete=(i:number)=>{
-      const prevTodos=JSON.parse(JSON.stringify(todos));
-    prevTodos.splice(i,1);
-    setTodos(prevTodos);
-    
-    
-  }
+ let Tasks=filterTask? filterTask : todos
+  
   return (
     <div className="card-box">
-      {todos.slice(0, 5).map((todo: valuesType,i:number) => {
+      {filterTask?.length==0 && "No Task Found"}
+      {filterTask==null && todos.length==0 && "Add first Task"}
+      {Tasks.slice(0, 5).map((todo: valuesType,i:number) => {
         return (
           <div className={`todoContainer `}>
             <div className="titleContainer">
