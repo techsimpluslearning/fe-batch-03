@@ -1,7 +1,6 @@
-import React, { createContext, useEffect, useState } from "react";
-import { valuesType } from "./Components/Addnewtaskbutton";
+import { createContext, useEffect, useState } from "react";
 import moment from "moment";
-import queryString from "query-string";
+import { valuesType } from "./components/Addnewtaskbutton";
 
 // create
 export const TaskContext: any = createContext(undefined);

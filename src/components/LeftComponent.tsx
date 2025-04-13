@@ -1,18 +1,15 @@
 import { FaEdit, FaTrash } from "react-icons/fa";
 import "./LeftComponent.css";
-import { valuesType } from "./Addnewtaskbutton";
 import React, { useContext } from "react";
 import { TaskContext } from "../TaskContext";
 import { ThemeContext } from "../ThemeContext";
+import { valuesType } from "./Addnewtaskbutton";
 
-interface leftComponentType {
-  theme?: "dark" | "light" | "default";
-}
 
-function LeftComponent(props: leftComponentType) {
+function LeftComponent() {
   const { bgColor }: any = useContext(ThemeContext);
 
-  const { todos, setIsOpen, onEditClick }: any = useContext(TaskContext);
+  const { todos, onEditClick }: any = useContext(TaskContext);
   console.log("Left Com.");
 
   return (

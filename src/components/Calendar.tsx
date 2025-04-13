@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import "./calendar.css";
 import { TaskContext } from "../TaskContext";
-const Calendar = (props: any) => {
+const Calendar = () => {
   const [startDate, setStartDate] = useState(new Date());
   const { onDateFilter }: any = useContext(TaskContext);
 

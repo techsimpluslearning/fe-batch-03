@@ -1,11 +1,9 @@
 import "./App.css";
+import Addnewtaskbutton from "./components/Addnewtaskbutton";
 import "./components/Addnewtaskbutton.css";
-import { useContext, useState } from "react";
 import LeftComponent from "./components/LeftComponent";
-import Addnewtaskbutton, { valuesType } from "./Components/Addnewtaskbutton";
 import MainComponent from "./components/MainComponent";
 import RightComponent from "./components/RightComponent";
-import { Input, FormGroup } from "reactstrap";
 
 const App = () => {
   return (

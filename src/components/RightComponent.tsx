@@ -3,7 +3,7 @@ import Calendar from "./Calendar";
 import { TaskContext } from "../TaskContext";
 import { Button } from "reactstrap";
 
-export default function RightComponent(props: any) {
+export default function RightComponent() {
   const {clearFilter}:any = useContext(TaskContext)
 
   return (

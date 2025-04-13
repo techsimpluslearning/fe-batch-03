@@ -3,9 +3,9 @@ import { todoList } from "../constent";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import "./MainComponent.css";
 
-function MainComponent(props: any) {
+function MainComponent() {
   const [currentPage, setCurrentPage] = useState(1);
-  const [perPage, setPerPage] = useState(6);
+  const perPage = 6;
   const [activePaginList, setActivePaginList] = useState<number[]>([]);
   const totalTodos = todoList.length; // Use the existing todoList length
   const totalPages = Math.ceil(totalTodos / perPage);
@@ -31,7 +31,7 @@ function MainComponent(props: any) {
       Main Component hiiiiii
       <h2 className="mb-4">To-Do List</h2>
       <div className="row">
-        {currentTodos.map((v, i) => {
+        {currentTodos.map((v) => {
           return (
             <div className="col-4 mb-4">
               <div className="card p-4 shadow">

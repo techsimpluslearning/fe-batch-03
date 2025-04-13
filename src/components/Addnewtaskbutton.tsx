@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import {
   Button,
   Modal,
@@ -36,9 +36,7 @@ const impOptions: dropdownOptionTypes[] = [
   { value: "low", label: "Low" },
 ];
 
-interface addNewTaskButtonType {}
-
-const Addnewtaskbutton = (props: addNewTaskButtonType) => {
+const Addnewtaskbutton = () => {
   const {
     isOpen,
     setIsOpen,
@@ -58,10 +56,12 @@ const Addnewtaskbutton = (props: addNewTaskButtonType) => {
   const buttonText = editTaskId !== null ? "Update Task" : "Add New Task";
 
   const onValueChange = (field: string, value: any) => {
-    setValues({ ...values, [field]: value });
+    let newData = { ...values, [field]: value };
+    setValues(newData);
+
+    editTaskId !== null &&
+      sessionStorage.setItem("values", JSON.stringify(newData));
   };
-
-
 
   const onSubmit = () => {
     if (editTaskId !== null) {
